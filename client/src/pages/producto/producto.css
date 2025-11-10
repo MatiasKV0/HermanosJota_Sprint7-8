@@ -1,0 +1,244 @@
+.producto {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.producto__info {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+}
+
+/* imagen */
+.producto__media {
+  flex: 1.1;
+  width: 100%;
+}
+
+.producto__figure {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--colorprimario);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.producto__figure img {
+  width: min(90%, 720px);
+  object-fit: contain;
+}
+
+/* detalles */
+.producto__titulo {
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--colorprimario);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin: 0 0 0.25rem;
+}
+
+.producto__panel {
+  border: 2px solid var(--colorprimario);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0 1rem 0;
+}
+
+.producto__subtitulo {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: var(--colorprimario);
+}
+
+.producto__descripcion {
+  line-height: 1.6;
+}
+
+.atributos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.atributo-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.atributos dt {
+  font-weight: 600;
+  color: var(--colorprimario);
+  min-width: fit-content;
+}
+
+.atributos dd {
+  margin: 0;
+  flex: 1;
+}
+
+/* Inputs */
+.producto__cantidad {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 1rem;
+}
+
+.cantidad__control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cantidad-input {
+  flex: 1;
+  width: 80px;
+  padding: 0.75rem;
+  border: 2px solid var(--colorprimario);
+  font-size: 1rem;
+  border-radius: 10px 0 0 10px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--colorprimario);
+  background: var(--blanco);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cantidad-input:focus {
+  outline: none;
+  border-color: var(--colorsecundario);
+  box-shadow: 0 0 0 3px rgba(139, 90, 60, 0.1);
+}
+
+.cantidad-input:hover {
+  border-color: var(--colorsecundario);
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem 0;
+  border: 2px solid var(--colorprimario);
+  border-radius: 0 10px 10px 0;
+  background: var(--colorprimario);
+  color: var(--blanco);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background-color: var(--colordetallesoro);
+  border-color: var(--colordetallesoro);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--delete{
+  margin: 1rem 0 0 0.5rem;
+  border-radius: 10px;
+  background: var(--colorprimario);
+  border: 2px solid var(--colorprimario);
+}
+
+.btn--delete:hover {
+  background-color: var(--colordetallesoro);
+  border-color: var(--colordetallesoro);
+}
+
+.btn--edit{
+  margin: 1rem 0.5rem 0 0;
+  border-radius: 10px;
+  background: var(--colorsecundario);
+  border: 2px solid var(--colorsecundario);
+}
+
+.btn--edit:hover {
+  background-color: var(--colordetallesoro);
+  border-color: var(--colordetallesoro);
+}
+
+.producto__precio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.producto__precio span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--colorsecundario);
+  margin: 0 10px 0 0;
+}
+
+#p-price {
+  display: flex;
+  font-size: 2rem;
+  text-align: right;
+  font-weight: 700;
+  color: var(--colorprimario);
+  margin: 0 0 10px;
+}
+
+@media (max-width: 768px) {
+  .producto {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+
+  .producto__media {
+    flex: initial;
+    width: 100%;
+  }
+
+  .cantidad__control {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .producto__cantidad {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .producto__cantidad .btn {
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .producto__cantidad .cantidad-input {
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .btn--delete{
+    margin: 0.5rem 0 0 0;
+  }
+
+  .btn--edit{
+    margin: 0.5rem 0 0 0;
+  }
+}

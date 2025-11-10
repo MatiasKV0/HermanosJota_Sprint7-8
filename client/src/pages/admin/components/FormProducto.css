@@ -1,0 +1,106 @@
+.main__formProducto {
+  margin: 5rem auto;
+  width: 70%;
+  max-width: 1200px;
+}
+
+.formProducto {
+  display: flex;
+  flex-direction: column;
+}
+
+.formProducto label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--colorprimario);
+  margin: 5px 0 5px 0;
+  letter-spacing: 0.02em;
+}
+
+.formProducto input,
+textarea,
+select {
+  font-family: "Inter", system-ui, sans-serif;
+  resize: vertical;
+  border: 2px solid var(--gris-suave);
+  border-radius: 8px;
+  outline: none;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--blanco);
+}
+
+.formProducto textarea {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.formProducto input:focus,
+.formProducto textarea:focus,
+.formProducto select:focus {
+  border-color: var(--colorsecundario);
+  box-shadow: 0 0 0 3px rgba(135, 169, 107, 0.1);
+}
+
+.formProducto button[type='submit'] {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 2rem auto 0;
+  transition: all 0.3s ease;
+  border: 2px solid var(--colorprimario);
+  width: 100%;
+  background: var(--colorprimario);
+  color: var(--blanco);
+  cursor: pointer;
+}
+
+.formProducto button[type="submit"]:hover {
+  background: var(--colordetallesoro);
+  border-color: var(--colordetallesoro);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 164, 55, 0.3);
+}
+
+.formProducto h2 {
+  margin-top: 1rem;
+}
+
+.form__atributos {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__medidas{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form__medidas input{
+  width: 100%;
+}
+
+.input-error{
+  border: 1px solid var(--colorprimario) !important;
+}
+
+@media (max-width: 768px) {
+  .main__formProducto {
+    width: 90%;
+  }
+  .form__medidas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .form__medidas input{
+  width:auto;
+  }
+}

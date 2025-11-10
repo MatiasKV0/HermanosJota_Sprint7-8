@@ -1,0 +1,133 @@
+.productos {
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.productos__layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  align-items: flex-start;
+}
+
+.productos__aside {
+  flex: 0 0 260px;
+  padding-top: 5.5rem;
+}
+
+.productos__aside form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.productos__aside input[type="search"] {
+  width: 100%;
+  padding: 0.3rem 0rem;
+  border: none;
+  border-bottom: var(--colorprimario) 2px solid;
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--colorprimario);
+}
+
+::placeholder {
+  color: var(--colorprimario);
+  opacity: 0.7;
+}
+
+.productos__aside nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.productos__aside nav li {
+  font-size: 0.8rem;
+  font: "Inter", sans-serif;
+  letter-spacing: 0.08em;
+  color: var(--colorprimario);
+  cursor: pointer;
+  width: fit-content;
+}
+
+.productos__layout section {
+  flex: 1;
+}
+
+.productos__layout section #productos__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.productos__layout section #productos__container a {
+  border: 2px var(--colorprimario) solid;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  text-decoration: none;
+  flex: 1 1 300px;
+}
+
+.productos__layout section #productos__container a img {
+  max-block-size: 80%;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.productos__layout section #productos__container a p {
+  display: none;
+}
+
+.productos__btn {
+  width: 100%;
+  padding: 0.75rem 0;
+  margin: 1rem 0;
+  border: 2px solid var(--colorprimario);
+  border-radius: 10px;
+  background: var(--colorprimario);
+  color: var(--blanco);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.productos__btn:hover {
+  background-color: var(--colordetallesoro);
+  border-color: var(--colordetallesoro);
+}
+
+@media (max-width: 700px) {
+  .productos__layout {
+    display: block;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+
+  .productos__aside {
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  .productos__layout section #productos__container a {
+    max-width: 320px;
+  }
+}

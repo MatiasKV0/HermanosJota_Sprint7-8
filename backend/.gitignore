@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Variables de entorno
+.env
+
+# Logs
+logs/
+
+# Configuraciones locales de IDE
+.vscode/
+.idea/
