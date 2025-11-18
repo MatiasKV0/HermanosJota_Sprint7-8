@@ -8,6 +8,8 @@ import corsOptions from "./src/config/corsConfig.js";
 import conectarDB from "./src/config/db.js";
 
 import productsRouter from "./src/routes/productsRouter.js";
+import usersRouter from "./src/routes/usersRouter.js";
+
 import logger from "./src/middleware/logger.js";
 import errorHandler from "./src/middleware/errorHandler.js";
 import notFound from "./src/middleware/notFound.js";
@@ -20,6 +22,7 @@ app.use(express.json());
 app.use(logger);
 
 app.use("/api/productos", productsRouter);
+app.use("/api/users", usersRouter);
 
 app.use(notFound);
 app.use(errorHandler);
