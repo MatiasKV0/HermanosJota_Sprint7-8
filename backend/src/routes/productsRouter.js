@@ -1,4 +1,5 @@
 import express from "express";
+import {verificarAuth, verificarAdmin} from "../middleware/auth.js";
 
 import {
   getAllProducts,
@@ -13,12 +14,12 @@ const productsRouter = express.Router();
 productsRouter
   .route("/")
   .get(getAllProducts)
-  .post(postProduct);
+  .post(verificarAuth, verificarAdmin, postProduct);
 
 productsRouter
   .route("/:id")
   .get(getProduct)
-  .put(putProduct)
-  .delete(deleteProduct);
+  .put(verificarAuth, verificarAdmin, putProduct)
+  .delete(verificarAuth, verificarAdmin, deleteProduct);
 
 export default productsRouter;
