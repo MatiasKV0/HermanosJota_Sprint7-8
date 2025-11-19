@@ -51,6 +51,7 @@ const loginUsuario = async (req, res, next) => {
         id: usuario._id,
         nombre: usuario.nombre,
         email: usuario.email,
+        rol: usuario.rol,
       },
     });
   } catch (error) {
@@ -62,7 +63,7 @@ const loginUsuario = async (req, res, next) => {
 const obtenerUsuario = async (req, res, next) => {
   try {
     const usuario = req.usuario;
-    res.json({ id: usuario._id, nombre: usuario.nombre, email: usuario.email });
+    res.json({ id: usuario._id, nombre: usuario.nombre, email: usuario.email, rol: usuario.rol });
   } catch (error) {
     next(error);
   } 
