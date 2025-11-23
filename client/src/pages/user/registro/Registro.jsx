@@ -1,5 +1,6 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useState, useEffect } from "react";
+import "./registro.css";
 
 export default function Registro() {
   const { registrar } = useAuth();
@@ -77,62 +78,63 @@ export default function Registro() {
   }, [exito]);
 
   return (
-    <>
-      <h1>Registro</h1>
+    <main className="registro-page">
+      <section className="registro-card">
+        <h1>Registro</h1>
+        <form onSubmit={handleSubmit} noValidate className="registro-form">
+          <label>Nombre:</label>
+          <input
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            className={errores.nombre ? "input-error" : ""}
+          />
+          <span className="error-message">{errores.nombre}</span>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          className={errores.nombre ? "input-error" : ""}
-        />
-        <span className="error-message">{errores.nombre}</span>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={errores.email ? "input-error" : ""}
+          />
+          <span className="error-message">{errores.email}</span>
 
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={errores.email ? "input-error" : ""}
-        />
-        <span className="error-message">{errores.email}</span>
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={errores.password ? "input-error" : ""}
+          />
+          <span className="error-message">{errores.password}</span>
 
-        <label>Contraseña:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={errores.password ? "input-error" : ""}
-        />
-        <span className="error-message">{errores.password}</span>
+          <label>Confirmar contraseña:</label>
+          <input
+            type="password"
+            value={confirmarPassword}
+            onChange={(e) => setConfirmarPassword(e.target.value)}
+            className={errores.confirmarPassword ? "input-error" : ""}
+          />
+          <span className="error-message">{errores.confirmarPassword}</span>
 
-        <label>Confirmar contraseña:</label>
-        <input
-          type="password"
-          value={confirmarPassword}
-          onChange={(e) => setConfirmarPassword(e.target.value)}
-          className={errores.confirmarPassword ? "input-error" : ""}
-        />
-        <span className="error-message">{errores.confirmarPassword}</span>
+          <button type="submit" disabled={exito}>
+            Registrarse
+          </button>
 
-        <button type="submit" disabled={exito}>
-          Registrarse
-        </button>
+          {mensajeBackend && (
+            <div className="error-message" style={{ marginTop: "10px" }}>
+              {mensajeBackend}
+            </div>
+          )}
 
-        {mensajeBackend && (
-          <div className="error-message" style={{ marginTop: "10px" }}>
-            {mensajeBackend}
-          </div>
-        )}
-
-        {exito && (
-          <div className="success-message" style={{ marginTop: "15px" }}>
-            ¡Registro exitoso! Ya podés iniciar sesión.
-          </div>
-        )}
-      </form>
-    </>
+          {exito && (
+            <div className="success-message" style={{ marginTop: "15px" }}>
+              ¡Registro exitoso! Ya podés iniciar sesión.
+            </div>
+          )}
+        </form>
+      </section>
+    </main>
   );
 }
