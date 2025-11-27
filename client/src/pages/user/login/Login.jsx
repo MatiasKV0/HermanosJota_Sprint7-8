@@ -1,5 +1,6 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useState, useEffect } from "react";
+import "./login.css";
 
 export default function Login() {
   const { login } = useAuth();
@@ -59,44 +60,45 @@ export default function Login() {
   }, [exito]);
 
   return (
-    <>
-      <h1>Login</h1>
+    <main className="login">
+      <section className="login-card">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit} noValidate className="login-form">
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={errores.email ? "input-error" : ""}
+          />
+          <span className="error-message">{errores.email}</span>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={errores.email ? "input-error" : ""}
-        />
-        <span className="error-message">{errores.email}</span>
+          <label>Contraseña:</label>
+          <input
+           type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={errores.password ? "input-error" : ""}
+          />
+          <span className="error-message">{errores.password}</span>
 
-        <label>Contraseña:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={errores.password ? "input-error" : ""}
-        />
-        <span className="error-message">{errores.password}</span>
+          <button type="submit" disabled={exito}>
+            Iniciar sesión
+          </button>
 
-        <button type="submit" disabled={exito}>
-          Iniciar sesión
-        </button>
+          {mensajeBackend && (
+            <div className="error-message" style={{ marginTop: "10px" }}>
+              {mensajeBackend}
+            </div>
+          )}
 
-        {mensajeBackend && (
-          <div className="error-message" style={{ marginTop: "10px" }}>
-            {mensajeBackend}
-          </div>
-        )}
-
-        {exito && (
-          <div className="success-message" style={{ marginTop: "15px" }}>
-            ¡Inicio de sesión exitoso! Redirigiendo...
-          </div>
-        )}
-      </form>
-    </>
+          {exito && (
+            <div className="success-message" style={{ marginTop: "15px" }}>
+              ¡Inicio de sesión exitoso! Redirigiendo...
+            </div>
+          )}
+        </form>
+      </section>
+    </main>
   );
 }
