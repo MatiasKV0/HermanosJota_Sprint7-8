@@ -1,7 +1,7 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Pedidos.css";
+import "./pedidos.css";
 
 
 export default function Pedidos() {

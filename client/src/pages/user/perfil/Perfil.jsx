@@ -1,7 +1,7 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Perfil.css";
+import "./perfil.css";
 
 export default function Perfil() {
   const { auth, loading, logout, obtenerPedidos } = useAuth();
