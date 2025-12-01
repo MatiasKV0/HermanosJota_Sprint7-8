@@ -63,7 +63,7 @@ const loginUsuario = async (req, res, next) => {
 const obtenerUsuario = async (req, res, next) => {
   try {
     const usuario = req.usuario;
-    res.json({ id: usuario._id, nombre: usuario.nombre, email: usuario.email, rol: usuario.rol });
+    res.json({ id: usuario._id, nombre: usuario.nombre, email: usuario.email, rol: usuario.rol, createdAt: usuario.createdAt });
   } catch (error) {
     next(error);
   } 

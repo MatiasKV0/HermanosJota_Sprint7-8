@@ -1,9 +1,11 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import "./login.css";
 
 export default function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,7 +48,7 @@ export default function Login() {
       setEmail("");
       setPassword("");
       setErrores({});
-      console.log("Usuario logueado:", respuesta);
+      navigate("/perfil");
     } catch (error) {
       setMensajeBackend(error.message || "Error en el login");
     }
@@ -62,7 +64,7 @@ export default function Login() {
   return (
     <main className="login">
       <section className="login-card">
-        <h1>Login</h1>
+        <h1>Iniciar sesión</h1>
         <form onSubmit={handleSubmit} noValidate className="login-form">
           <label>Email:</label>
           <input
