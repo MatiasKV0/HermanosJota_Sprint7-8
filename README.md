@@ -1,49 +1,41 @@
 # Mueblería Hermanos Jota – Proyecto NEXUS
 
 ## Integrantes del equipo
-- Arturo Toranzos
 - Lucas Rotelli
 - Matias Nicolas Villan
 - Santiago Ribecca
 
 ## 📌 Descripción
-Este proyecto corresponde a la consigna final de los Sprints 5 y 6 (NEXUS).
-El objetivo principal es convertir la aplicación de Mueblería Hermanos Jota en una aplicación web completa y persistente, conectando el backend de Express a una base de datos MongoDB Atlas y ofreciendo una API RESTful con CRUD completo (Crear, Leer, Actualizar, Borrar).
+Este proyecto corresponde a la consigna final de los Sprints 7 y 8 (NEXUS). El objetivo principal es presentar una aplicación web E-Commerce completa, escalable y persistente ("Full Stack"). Se ha evolucionado desde un sitio estático a una aplicación dinámica que conecta un frontend moderno en React con un backend robusto en Express y una base de datos MongoDB Atlas.
 
-El frontend de React evoluciona para consumir esta API real, permitiendo:
+La aplicación incorpora un sistema de autenticación y autorización (JWT), permitiendo dos roles diferenciados:
 
-- Listar todos los productos.
-- Ver detalles individuales.
-- Crear nuevos productos mediante formularios.
-- Editar productos existentes.
+* Clientes: Pueden navegar el catálogo, gestionar su carrito, realizar pedidos y ver su historial de compras.
+
+* Administradores: Tienen acceso a un Dashboard exclusivo para la gestión integral del inventario (CRUD de productos).
 
 ## 🏛️ Arquitectura del Proyecto
 La estructura es monorepo, con dos carpetas principales:
-- `/backend`  # Servidor Node.js + Express
-- `/client`   # Aplicación React
+- `/backend`  # Servidor Node.js + Express + MongoDB
+- `/client`   # Aplicación React + Vite
 
 ### Backend
-* Servidor Express.
-* La API de Express se conecta a una base de datos MongoDB Atlas usando Mongoose.
+* Servidor: Node.js con Express.
+* Base de Datos: MongoDB Atlas (ODM Mongoose).
+* Autenticación: JSON Web Tokens (JWT) y Hash de contraseñas con Bcrypt.
 * **Endpoints**:
-    * `GET /api/productos` → Devuelve la lista completa de productos.
-    * `GET /api/productos/:id` → Devuelve un producto por su _id.
-    * `POST	/api/productos` → Crea un nuevo producto.
-    * `PUT	/api/productos/:id` → Actualiza un producto existente.
-    * `DELETE	/api/productos/:id` → Elimina un producto por su _id.
-* Middleware global para loguear cada petición recibida.
-* Middleware `express.json()` para procesar el cuerpo de las peticiones POST.
-* Manejo de rutas modularizado con `express.Router`.
-* Manejadores de error para rutas no encontradas (404) y errores de servidor (500).
+    * `/api/productos` → CRUD de productos.
+    * `/api/users` → Gestión de usuarios.
+    * `/api/pedidos` → Gestión de pedidos.
+* Middleware de validación de tokens, cors y manejo de errores centralizado.
 
 ### Frontend
 * Single Page Application (SPA) construida con **React**.
-* Componentes reutilizables.
-* Consumo de la API propia (`/api/productos`) mediante `fetch`.
-* Renderizado dinámico de la lista de productos.
-* Vista de detalle de producto mediante renderizado condicional.
-* Estado global para el carrito de compras (manejado con `Context API`).
-* Formulario de contacto controlado con el hook `useState`.
+* Gestión de Estado:
+    * CartContext: Manejo global del carrito de compras.
+    * DataContext: Sincronización de productos con la API.
+    * AuthContext: Manejo de sesión, persistencia de usuario y roles.
+* Vistas mediante renderizado condicional.
 
 ## ⚙️ Instalación y Uso
 
@@ -59,6 +51,9 @@ La estructura es monorepo, con dos carpetas principales:
     Variables necesarias (.env):
     ```sh
     MONGO_URI=<cadena_de_conexion_mongodb_atlas>
+    JWT_SECRET=<frase_secreta>
+    FRONTEND_URL=<dirección_client>
+    PORT=<puerto>
      ```
 4.  Iniciar servidor en modo desarrollo:
     ```sh
@@ -75,6 +70,10 @@ El backend correrá en: `http://localhost:5000` (por defecto).
     ```sh
     npm install
     ```
+    Variables necesarias (.env):
+    ```sh
+    VITE_BACKEND_URL=<dirección_backend>
+     ```
 3.  Iniciar aplicación de desarrollo:
     ```sh
     npm run dev
@@ -92,7 +91,6 @@ root/
 │   │   ├── middleware/    
 │   │   ├── models/      
 │   │   └── routes/    
-│   ├── uploads/    
 │   ├── .env    
 │   ├── index.js    
 │   ├── package.json    
@@ -110,21 +108,27 @@ root/
 │   │   │   ├── contacto/    
 │   │   │   ├── home/    
 │   │   │   ├── producto/    
-│   │   │   └── productos/    
+│   │   │   ├── productos/    
+│   │   │   ├── user/    
+│   │   │   │   ├── login/      
+│   │   │   │   ├── pedidos/    
+│   │   │   │   ├── perfil/  
+│   │   │   │   ├── registro/   
 │   │   ├── App.jsx    
 │   │   ├── main.jsx    
 │   │   └── styles.css    
 │   ├── .env    
 │   ├── package.json    
+│   ├── index.html   
 │   └── vite.config.js    
 
 
 ## 🚀 Tecnologías Utilizadas
 * **Frontend**: `React`, `Vite`, `CSS`,`React Router DOM`.
-* **Backend**: `Node.js`, `Express`,`Mongoose`,`Dotenv`.
-* **Base de Datos**: `MongoDB Atlas`.
-* **Otros**: `JavaScript (ES6+)`, `Fetch API`.
+* **Backend**: `Node.js`, `Express`,`Dotenv`, `JWT (JsonWebToken)`, `Bcrypt`.
+* **Base de Datos**: `MongoDB Atlas`,`Mongoose`.
+* **Otros**: `JavaScript (ES6+)`, `Fetch API`,`Git`, `NPM`, `Postman`.
 
 ## 📌 Despliegue
-- **Frontend:** [[URL del Frontend]](https://hermanos-jota-sprint5-6.vercel.app/)  
-- **Backend:** [[URL del Backend] ](https://hermanos-jota-sprint5-6-q4ms.vercel.app/) 
+- **Frontend:** [[URL del Frontend]](https://hermanos-jota-sprint7-8-front.vercel.app/)  
+- **Backend:** [[URL del Backend] ](https://hermanos-jota-sprint7-8-dun.vercel.app/) 
