@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useData } from "../../context/DataContext";
 import { eliminarProducto } from "../../data/db";
+
+import Destacados from "../../components/Destacados";
 import "./producto.css";
 
 export default function Producto() {
@@ -46,7 +48,7 @@ export default function Producto() {
 
     setStockRestante(restante);
     setDisponible(restante > 0);
-    
+
     setQty(prev => {
       if (restante === 0) return 0;
       if (prev > restante) return restante;
@@ -86,7 +88,7 @@ export default function Producto() {
   };
 
   return (
-    <main className="producto">
+    <main>
       <section className="producto">
         <div className="producto__media">
           <figure className="producto__figure">
@@ -142,15 +144,6 @@ export default function Producto() {
                 Añadir al carrito
               </button>
             </div>
-
-            <div className="cantidad__control">
-              <button className="btn btn--edit" onClick={handleClickEdit}>
-                Editar producto
-              </button>
-              <button className="btn btn--delete" onClick={handleClickDelete}>
-                Eliminar producto
-              </button>
-            </div>
           </div>
 
           {atributos && (
@@ -165,6 +158,12 @@ export default function Producto() {
               </dl>
             </div>
           )}
+        </div>
+      </section>
+      <section className="more-products">
+        <h2>También te puede interesar</h2>
+        <div className="products-container" id="products-container">
+          <Destacados />
         </div>
       </section>
     </main>

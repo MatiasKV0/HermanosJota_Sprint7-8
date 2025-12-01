@@ -92,26 +92,6 @@
   display: none;
 }
 
-.productos__btn {
-  width: 100%;
-  padding: 0.75rem 0;
-  margin: 1rem 0;
-  border: 2px solid var(--colorprimario);
-  border-radius: 10px;
-  background: var(--colorprimario);
-  color: var(--blanco);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.productos__btn:hover {
-  background-color: var(--colordetallesoro);
-  border-color: var(--colordetallesoro);
-}
-
 @media (max-width: 700px) {
   .productos__layout {
     display: block;

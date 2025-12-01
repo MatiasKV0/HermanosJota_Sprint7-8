@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useCart } from "../../context/CartContext";
 import { useData } from "../../context/DataContext";
+import { useAuth } from "../../context/AuthContext";
 
 import Destacados from "../../components/Destacados";
 import ItemCart from "./components/itemCart";
@@ -8,8 +11,12 @@ import ItemCart from "./components/itemCart";
 import "./carrito.css";
 
 export default function Carrito() {
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, createPedido } = useCart();
   const { productos, loading: dataLoading, error: dataError } = useData();
+  
+  const { auth } = useAuth(); 
+
+  const navigate = useNavigate();
 
   const [carritoCompleto, setCarritoCompleto] = useState([]);
   const [success, setSuccess] = useState(false);
@@ -33,14 +40,20 @@ export default function Carrito() {
       setPrecioTotal(total);
     } else {
       setCarritoCompleto([]);
-      window.scrollTo(0, 0);
     }
   }, [cart, productos]);
 
-  const handleClick = () => {
-    clearCart();
-    setSuccess(true);
-    window.scrollTo(0, 0);
+  const handleClick = async () => {
+    if(auth){
+      let token = localStorage.getItem("token");
+      await createPedido({ items: cart, total: precioTotal, estado: "pagado", token });
+      clearCart();
+      setSuccess(true);
+      window.scrollTo(0, 0);
+    }
+    else{
+      navigate("/login", { state: { from: "/carrito" } });
+    }
   };
 
   if (dataLoading) return <p className="msg">Cargando carrito...</p>;
@@ -56,13 +69,17 @@ export default function Carrito() {
       <section className="cart-container">
         <div className="cart-items" id="cart-items">
           {success ? (
-            <h2>
-              Pago realizado con éxito.<br/>
-              Total abonado: ${precioTotal.toLocaleString("es-AR")} <br/>
-              ¡Gracias por confiar en nosotros!
-            </h2>
+            <div className="success-message-cart"> 
+                <h2>Pago realizado con éxito.</h2>
+                <p>Total abonado: ${precioTotal.toLocaleString("es-AR")}</p>
+                <p>¡Gracias por confiar en nosotros!</p>
+                <button className="checkout" onClick={() => navigate("/mis-pedidos")}>Ver mis pedidos</button>
+            </div>
           ) : carritoCompleto.length === 0 ? (
-            <h2 className="empty-cart">El carrito está vacío.</h2>
+            <div className="empty-cart-container">
+                <h2 className="empty-cart">El carrito está vacío.</h2>
+                <button className="checkout" onClick={() => navigate("/productos")}>Ir a comprar</button>
+            </div>
           ) : (
             <ul>
               {carritoCompleto.map((item) => (
@@ -75,11 +92,19 @@ export default function Carrito() {
         {carritoCompleto.length > 0 && !success && (
           <div className="cart-summary">
             <h3>¿Listo para finalizar tu compra?</h3>
-            <p>Total: ${precioTotal.toLocaleString("es-AR")}</p>
+            <p className="total-price">Total: ${precioTotal.toLocaleString("es-AR")}</p>
             <p>Revisa los productos de tu carrito y procede al pago de manera segura.</p>
-            <button className="checkout" id="cotizar" onClick={handleClick}>
-              Pagar Ahora
-            </button>
+            
+            {auth ? (
+              <button className="checkout" id="cotizar" onClick={handleClick}>
+                Pagar Ahora
+              </button>
+            ) : (
+              <button className="checkout secondary" id="cotizar" onClick={handleClick}>
+                Iniciar sesión para pagar
+              </button>
+            )}
+
           </div>
         )}
       </section>
