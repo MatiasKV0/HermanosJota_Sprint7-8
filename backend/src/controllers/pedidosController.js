@@ -4,7 +4,7 @@ const obtenerPedidos = async (req, res, next) => {
   try {
     const usuario = req.usuario;
     const pedidos = await Pedido.find({ usuario: usuario._id });
-    res.json({ pedidos });
+    res.json({ pedidos, total: pedidos.length });
   } catch (error) {
     next(error);
   }

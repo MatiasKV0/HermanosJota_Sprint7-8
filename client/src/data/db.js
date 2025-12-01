@@ -33,9 +33,12 @@ export async function getProductoPorId(id) {
 
 export async function crearProducto(producto) {
   try {
+    const token = localStorage.getItem("token");
     const res = await fetch(`${BASE_URL}/api/productos`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+       },
       body: JSON.stringify(producto),
     });
 
@@ -50,9 +53,12 @@ export async function crearProducto(producto) {
 
 export async function actualizarProducto(id, data) {
   try {
+    const token = localStorage.getItem("token");
     const res = await fetch(`${BASE_URL}/api/productos/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+       },
       body: JSON.stringify(data),
     });
 
@@ -67,8 +73,12 @@ export async function actualizarProducto(id, data) {
 
 export async function eliminarProducto(id) {
   try {
+    const token = localStorage.getItem("token");
     const res = await fetch(`${BASE_URL}/api/productos/${id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     });
 
     if (!res.ok) throw new Error(`Error al eliminar producto: ${res.status}`);

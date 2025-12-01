@@ -13,6 +13,7 @@ import Carrito from "./pages/carrito/Carrito";
 
 import CrearProducto from "./pages/admin/crear-producto/CrearProductos";
 import EditarProducto from "./pages/admin/editar-producto/EditarProducto";
+import AdminDashboard from "./pages/admin/dashboard/Dashboard";
 
 import Registro from "./pages/user/registro/Registro";
 import Login from "./pages/user/login/Login";
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/carrito" element={<Carrito />} />
                 <Route path="/admin/crear-producto" element={<CrearProducto />} />
                 <Route path="/admin/editar-producto/:id" element={<EditarProducto />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/registro" element={<Registro />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/mis-pedidos" element={<Pedidos />} />

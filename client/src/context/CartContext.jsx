@@ -1,4 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import {
+  CrearPedido,
+} from "../data/pedido.js";
+
 
 const CartContext = createContext();
 
@@ -50,9 +54,13 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => setCart([]);
 
+  const createPedido = async (data) => {
+    return await CrearPedido(data);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart }}
+      value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, createPedido }}
     >
       {children}
     </CartContext.Provider>

@@ -140,7 +140,7 @@ export default function useFormProducto(initialData = null, onSubmit) {
   useEffect(() => {
     if (exito) {
       const clearMsg = setTimeout(() => setExito(""), 2000);
-      const goTo = setTimeout(() => navigate("/productos"), 2000);
+      const goTo = setTimeout(() => navigate("/admin/dashboard"), 2000);
 
       return () => {
         clearTimeout(clearMsg);
