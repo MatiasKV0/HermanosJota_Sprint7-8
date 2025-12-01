@@ -1,10 +1,11 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./registro.css";
 
 export default function Registro() {
   const { registrar } = useAuth();
-
+  const navigate = useNavigate();
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,9 +73,10 @@ export default function Registro() {
 
   useEffect(() => {
     if (exito) {
-      const timer = setTimeout(() => setExito(false), 5000);
+      const timer = setTimeout(() => { setExito(false); navigate("/login");}, 5000);
       return () => clearTimeout(timer);
     }
+    
   }, [exito]);
 
   return (

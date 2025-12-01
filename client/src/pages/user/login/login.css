@@ -1,24 +1,21 @@
 .login-page {
   min-height: calc(100vh - 140px); 
-  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
   background: var(--colorfondo);
 }
 
 .login-card {
   position: relative;
   background: var(--blanco);
-  max-width: 420px;
-  width: 100%;
+  max-width: 480px;
   padding: 2.5rem 2.5rem 2rem;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(160, 82, 45, 0.12);
   margin: 0 auto;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  align-self: center;
+  text-align: left;
 }
 
 .login-card::before {
@@ -39,7 +36,8 @@
 
 .login-card h1 {
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
 }
 
 .login-form {
