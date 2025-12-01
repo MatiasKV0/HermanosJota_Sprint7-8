@@ -10,17 +10,17 @@ export default function CrearProducto() {
   const navigate = useNavigate();
   const { auth, loading } = useAuth();
 
-    useEffect(() => {
-      if (!loading && !auth) {
-        navigate("/");
-      }
-    }, [loading, auth]);
-  
-    if (loading) return <p className="msg">Cargando...</p>;
-    if (!auth) return null;
-    if (auth.rol !== 'admin') {
+  useEffect(() => {
+    if (!loading && !auth) {
       navigate("/");
     }
+  }, [loading, auth]);
+
+  if (!auth) return null;
+  if (auth.rol !== 'admin') {
+    navigate("/");
+  }
+  if (loading) return <p className="msg">Cargando...</p>;
 
   return (
     <FormProducto

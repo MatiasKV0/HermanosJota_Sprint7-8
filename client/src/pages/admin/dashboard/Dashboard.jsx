@@ -19,8 +19,8 @@ export default function Dashboard() {
   const [productToDelete, setProductToDelete] = useState(null);
 
   const openDeleteModal = (id) => {
-    setProductToDelete(id); 
-    setIsModalOpen(true);  
+    setProductToDelete(id);
+    setIsModalOpen(true);
   };
 
   const confirmDelete = async () => {
@@ -57,9 +57,8 @@ export default function Dashboard() {
     navigate(`/producto/${id}`);
   };
 
-  if (loading || dataLoading) return <div className="msg">Cargando panel...</div>;
-
   if (!auth || auth.rol !== 'admin') return null;
+  if (loading || dataLoading) return <div className="msg">Cargando panel...</div>;
 
   return (
     <main className="dashboard-page">

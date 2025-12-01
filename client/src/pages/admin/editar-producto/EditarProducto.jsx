@@ -32,18 +32,17 @@ export default function EditarProducto() {
     };
   }, [id, getProductoById]);
 
-    useEffect(() => {
+  useEffect(() => {
     if (!loading && !auth) {
       navigate("/");
     }
   }, [loading, auth]);
 
-  if (loading) return <p className="msg">Cargando...</p>;
   if (!auth) return null;
   if (auth.rol !== 'admin') {
     navigate("/");
   }
-
+  if (loading) return <p className="msg">Cargando...</p>;
   if (!producto) return <p className="msg">Error al cargar el producto.</p>;
 
   return (

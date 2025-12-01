@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
@@ -8,6 +8,7 @@ export default function Header() {
   const { cart } = useCart();
   const { auth, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function Header() {
   const handleCerrarSesion = () => {
     logout();
     closeAllMenus();
+    navigate("/");
   };
 
   return (

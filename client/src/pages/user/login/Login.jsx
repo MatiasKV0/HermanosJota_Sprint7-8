@@ -1,11 +1,14 @@
 import { useAuth } from "../../../context/AuthContext";
 import { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,useLocation} from "react-router-dom";
 import "./login.css";
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || location.state?.from || "/perfil";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +51,7 @@ export default function Login() {
       setEmail("");
       setPassword("");
       setErrores({});
-      navigate("/perfil");
+      navigate(from, { replace: true });
     } catch (error) {
       setMensajeBackend(error.message || "Error en el login");
     }

@@ -73,7 +73,7 @@ export default function Registro() {
 
   useEffect(() => {
     if (exito) {
-      const timer = setTimeout(() => { setExito(false); navigate("/login");}, 5000);
+      const timer = setTimeout(() => { setExito(false); navigate("/login");}, 3000);
       return () => clearTimeout(timer);
     }
     
